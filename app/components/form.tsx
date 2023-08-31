@@ -39,7 +39,7 @@ export default function Form({setResponse}: any): JSX.Element {
           Paste the text to extract links from 
         </label>
         <textarea
-          rows={2}
+          rows={20}
           name="description"
           id="description"
           className="block w-full resize-none border-0 py-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
