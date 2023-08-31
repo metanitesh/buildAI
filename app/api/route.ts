@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       presence_penalty: 1,
     } as any)
     
-    console.log(response)
+    
     
   // }
   const stream = OpenAIStream(response as any)
