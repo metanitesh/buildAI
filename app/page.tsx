@@ -2,9 +2,12 @@
 import Image from "next/image";
 import Form from "./components/form";
 import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Home() {
   const [response, setResponse] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -16,10 +19,13 @@ export default function Home() {
       <div className="flex justify-around">
         <div className="w-1/2 p-4">
           <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
-            <Form setResponse={setResponse} />
+            <Form setResponse={setResponse} setIsLoading={setIsLoading} />
           </div>
         </div>
-        <div className="w-1/3 p-10">{response}</div>
+        <div className="w-1/3 p-10">
+          {isLoading ? <Skeleton count={5} /> : null}
+          <div dangerouslySetInnerHTML={{ __html: response }} />
+        </div>
       </div>
 
       {/* <main className="lg:pl-72 flex">

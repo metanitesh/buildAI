@@ -33,7 +33,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Form({ setResponse }: any): JSX.Element {
+export default function Form({ setResponse, setIsLoading }: any): JSX.Element {
   const [text, setText] = useState("");
 
   return (
@@ -78,6 +78,7 @@ export default function Form({ setResponse }: any): JSX.Element {
               type="submit"
               className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               onClick={async (e: any) => {
+                setIsLoading(true);
                 e.preventDefault();
                 const response = await fetch("/api", {
                   method: "POST",
@@ -90,6 +91,7 @@ export default function Form({ setResponse }: any): JSX.Element {
                 const json = await response.text();
                 console.log(json);
                 setResponse(json);
+                setIsLoading(false);
               }}
             >
               Get the links
